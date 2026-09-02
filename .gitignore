@@ -490,3 +490,8 @@ tools/butler/*.zip
 .cache/
 launcher_cache.db
 
+
+#claude
+.claude
+CLAUDE.MD
+
