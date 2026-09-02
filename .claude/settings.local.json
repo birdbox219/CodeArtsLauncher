@@ -31,7 +31,12 @@
       "Bash(taskkill //F //IM Launcher.Publisher.exe)",
       "Bash(time curl -s --max-time 180 http://localhost:5099/api/games)",
       "Bash(curl -s --max-time 60 -N \"http://localhost:5099/api/push/401985d3cf8b/events\")",
-      "Bash(dotnet test *)"
+      "Bash(dotnet test *)",
+      "Bash(awk -F/ '{print $1}')",
+      "Bash(xargs -0 du -h)",
+      "Bash(git grep *)",
+      "Bash(grep -E '.{12,}')",
+      "Bash(grep -E '^[A-Za-z0-9]{30,}$')"
     ]
   }
 }
