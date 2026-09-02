@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.itch.ovh)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(dotnet build *)",
+      "Bash(./tools/butler/butler.exe --help)",
+      "Bash(./tools/butler/butler.exe version *)",
+      "Bash(./tools/butler/butler.exe daemon *)",
+      "Bash(./tools/butler/butler.exe status *)",
+      "Bash(./tools/butler/butler.exe fetch *)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(cd *)",
+      "Bash(./tools/butler/butler.exe --json status birdbox774/logic-rift)",
+      "Bash(./tools/butler/butler.exe --json status leafo/xmoon)",
+      "Bash(cd /tmp)",
+      "Bash(pwd -W)",
+      "Bash(awk 'BEGIN{RS=\"<div dir=\\\\\"auto\\\\\" class=\\\\\"game_cell\"} /logic-rift/ {print \"<div dir=\\\\\"auto\\\\\" class=\\\\\"game_cell\" $0}' prof.html)",
+      "Bash(awk 'BEGIN{RS=\"<div dir=\\\\\"auto\\\\\" class=\\\\\"game_cell\"} NR>1{ *)",
+      "Bash(grep -n '^\\\\s*///\\\\|private async Task\\\\|public async Task\\\\|internal static\\\\|// ----' src/Launcher.Engine.Butler/WharfContentSource.cs)",
+      "PowerShell(dotnet build *)",
+      "PowerShell(dotnet test *)",
+      "Bash(./tools/butler/butler.exe --json status birdbox774/logic-rift --show-all-files)",
+      "Bash(dotnet --list-runtimes)",
+      "Bash(./tools/butler/butler.exe push *)",
+      "Bash(mkdir -p .cache/pushprobe)",
+      "Bash(./tools/butler/butler.exe --json push .cache/pushprobe birdbox774/logic-rift:windows --dry-run --userversion 0.0.0-probe)",
+      "Bash(dotnet sln *)",
+      "Bash(taskkill //F //IM Launcher.Publisher.exe)",
+      "Bash(time curl -s --max-time 180 http://localhost:5099/api/games)",
+      "Bash(curl -s --max-time 60 -N \"http://localhost:5099/api/push/401985d3cf8b/events\")",
+      "Bash(dotnet test *)"
+    ]
+  }
+}

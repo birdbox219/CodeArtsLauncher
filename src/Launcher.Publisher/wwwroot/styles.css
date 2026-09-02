@@ -1,0 +1,219 @@
+/* Birdbox publishing panel — same palette as the launcher (see src/Launcher.UI/App.xaml). */
+
+:root {
+  --bg: #0b0d13;
+  --surface: #141822;
+  --surface-2: #1b202d;
+  --border: #252c3d;
+  --accent: #6366f1;
+  --text: #f3f4f6;
+  --muted: #94a3b8;
+  --faint: #5a6478;
+  --success: #10b981;
+  --warning: #fbbf24;
+  --danger: #ef4444;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+}
+
+h1 { font-size: 15px; font-weight: 600; letter-spacing: .02em; margin: 0; }
+h2 { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+h3 { font-size: 14px; margin: 0; }
+code { font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px; color: var(--muted); }
+
+/* ============================== chrome ============================== */
+
+.topbar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 5;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.topbar-meta { color: var(--faint); font-size: 12px; margin-left: auto; font-family: "Cascadia Mono", Consolas, monospace; }
+
+main {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 20px;
+  padding: 20px;
+  align-items: start;
+  max-width: 1400px;
+}
+
+.pane {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.hint { color: var(--faint); font-size: 12px; margin: 6px 0; }
+.count { color: var(--faint); font-weight: 400; }
+.hidden { display: none !important; }
+
+.banner {
+  margin: 12px 20px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.banner.warn { background: #1a1e12; border: 1px solid #3f4420; color: #d9ce8a; }
+
+/* ============================== games ============================== */
+
+.games-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+
+.game {
+  display: flex; gap: 10px; align-items: center;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #10141d;
+  cursor: pointer;
+}
+.game:hover { background: #171c28; }
+.game.active { border-color: var(--accent); background: #171c28; }
+.game img { width: 44px; height: 34px; object-fit: cover; border-radius: 4px; background: var(--surface-2); flex: none; }
+.game .name { font-weight: 600; font-size: 13px; }
+.game .sub { font-size: 11px; color: var(--faint); font-family: "Cascadia Mono", Consolas, monospace; }
+.game .grow { min-width: 0; flex: 1; }
+.game .name, .game .sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.tag {
+  font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 4px; background: var(--surface-2); color: var(--muted);
+  flex: none;
+}
+.tag.live { background: #0e2b22; color: var(--success); }
+.tag.none { background: #2a2318; color: var(--warning); }
+
+/* ============================== publish form ============================== */
+
+.empty { padding: 24px 8px; }
+.empty p { margin: 0 0 8px; }
+
+.selected { display: flex; gap: 14px; margin-bottom: 18px; }
+.selected img { width: 96px; height: 74px; object-fit: cover; border-radius: 6px; background: var(--surface-2); }
+.selected h2 { text-transform: none; letter-spacing: 0; font-size: 17px; color: var(--text); margin-bottom: 4px; }
+.channels { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.field { display: block; margin-bottom: 14px; }
+.field > span { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.field em { color: var(--faint); font-style: normal; text-transform: none; letter-spacing: 0; }
+
+input[type=text] {
+  width: 100%;
+  padding: 9px 11px;
+  background: #10141d;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 13px;
+}
+input[type=text]:focus { outline: none; border-color: var(--accent); }
+
+.row { display: flex; gap: 8px; }
+.row.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+.check em { font-style: normal; color: var(--faint); font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px; }
+
+.btn {
+  padding: 9px 16px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover { background: #252c3d; }
+.btn.primary { background: var(--accent); border-color: var(--accent); font-weight: 600; }
+.btn.primary:hover { background: #4f46e5; }
+.btn.danger { background: #2a1518; border-color: #5b2a2f; color: #fca5a5; }
+.btn.ghost { background: transparent; }
+.btn.small { padding: 4px 10px; font-size: 12px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.actions { display: flex; gap: 10px; }
+
+/* ============================== reports ============================== */
+
+.report, .note, .outcome {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  margin-bottom: 14px;
+  background: #10141d;
+}
+.report .line { font-family: "Cascadia Mono", Consolas, monospace; color: var(--muted); }
+.report .problem, .outcome.bad { color: #fca5a5; }
+.report .warning { color: var(--warning); }
+.note { border-color: #3f4420; background: #1a1e12; color: #d9ce8a; }
+.outcome.good { border-color: #1e4b3a; background: #0e1a16; }
+.outcome .headline { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.outcome .delta { color: var(--success); font-family: "Cascadia Mono", Consolas, monospace; }
+
+/* ============================== live push ============================== */
+
+.push { margin-top: 6px; border-top: 1px solid var(--border); padding-top: 16px; }
+.progress-wrap { margin-bottom: 10px; }
+.progress { height: 6px; background: #10141d; border-radius: 3px; overflow: hidden; }
+.progress .bar { height: 100%; width: 0; background: linear-gradient(90deg, #06b6d4, #6366f1); transition: width .2s linear; }
+.progress .bar.indeterminate { width: 35%; animation: slide 1.2s ease-in-out infinite; }
+@keyframes slide { 0% { margin-left: -35%; } 100% { margin-left: 100%; } }
+.progress-meta { display: flex; justify-content: space-between; color: var(--faint); font-size: 12px; margin-top: 6px; font-family: "Cascadia Mono", Consolas, monospace; }
+
+.log {
+  max-height: 320px; overflow-y: auto;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: #0a0c11;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--muted);
+}
+.log .warning { color: var(--warning); }
+.log .error { color: #fca5a5; }
+.log .delta { color: var(--success); font-weight: 600; }
+
+/* ============================== folder picker ============================== */
+
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.62); display: flex; align-items: center; justify-content: center; z-index: 10; }
+.modal-card {
+  width: min(620px, 92vw);
+  max-height: 80vh;
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.modal-card header, .modal-card footer { display: flex; align-items: center; gap: 12px; }
+.modal-card header { margin-bottom: 12px; }
+.modal-card header .btn { margin-left: auto; }
+.modal-card footer { margin-top: 12px; }
+.modal-card footer .btn { margin-left: auto; }
+.crumb { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.browser-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+.browser-list li { padding: 7px 10px; border-radius: 6px; cursor: pointer; font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px; }
+.browser-list li:hover { background: var(--surface-2); }

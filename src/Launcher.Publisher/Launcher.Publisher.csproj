@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Launcher.Publisher</RootNamespace>
+
+    <!--
+      This is the publishing panel *you* run from the repo, not part of the build handed to
+      players. It shells out to tools\butler\butler.exe with your local itch.io key, so it must
+      never be shipped or exposed on a network interface. See docs/PUBLISHING.md.
+    -->
+    <UserSecretsId>launcher-publisher-local-only</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Launcher.Core\Launcher.Core.csproj" />
+    <ProjectReference Include="..\Launcher.Engine.Butler\Launcher.Engine.Butler.csproj" />
+  </ItemGroup>
+
+  <!-- The butler-output parsers are internal but are the parts worth testing directly. -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Launcher.Core.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!--
+    The panel is run with the repo as the working directory, so the content root is pinned to the
+    build output instead (see Program.cs) and the page has to be copied there with it.
+  -->
+  <ItemGroup>
+    <Content Update="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

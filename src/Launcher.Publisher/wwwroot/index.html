@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Birdbox publishing panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <h1>Publishing panel</h1>
+  </div>
+  <div class="topbar-meta" id="topbar-meta">reading local setup…</div>
+  <button class="btn ghost" id="refresh-btn" title="Re-scrape itch.io and re-read every channel">Refresh</button>
+</header>
+
+<div id="key-warning" class="banner warn hidden"></div>
+
+<main>
+  <!-- ============================== games ============================== -->
+  <section class="pane games">
+    <h2>Games <span class="count" id="games-count"></span></h2>
+    <p class="hint" id="games-hint">Loading from itch.io…</p>
+    <ul id="games-list" class="games-list"></ul>
+  </section>
+
+  <!-- ============================== publish =========================== -->
+  <section class="pane publish">
+    <div id="no-selection" class="empty">
+      <p>Pick a game on the left.</p>
+      <p class="hint">
+        Then choose the unpacked build folder and push. Pushing the same channel a second time is
+        what produces a patch instead of a full download.
+      </p>
+    </div>
+
+    <div id="form" class="hidden">
+      <div class="selected">
+        <img id="sel-cover" alt="" />
+        <div>
+          <h2 id="sel-title">—</h2>
+          <code id="sel-target">—</code>
+          <div id="sel-channels" class="channels"></div>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Build folder</span>
+        <div class="row">
+          <input type="text" id="folder" spellcheck="false"
+                 placeholder="D:\builds\LogicRift  — the unpacked folder, not a zip" />
+          <button class="btn ghost" id="browse-btn">Browse…</button>
+        </div>
+      </label>
+
+      <div id="folder-report" class="report hidden"></div>
+
+      <div class="row two">
+        <label class="field">
+          <span>Channel</span>
+          <input type="text" id="channel" spellcheck="false" />
+        </label>
+        <label class="field">
+          <span>Version <em>(optional)</em></span>
+          <input type="text" id="version" spellcheck="false" placeholder="1.0.1" />
+        </label>
+      </div>
+
+      <div id="channel-note" class="note hidden"></div>
+
+      <label class="check">
+        <input type="checkbox" id="if-changed" checked />
+        <span>Skip the push if nothing changed <em>(--if-changed)</em></span>
+      </label>
+
+      <div class="actions">
+        <button class="btn ghost" id="dryrun-btn">Dry run</button>
+        <button class="btn primary" id="publish-btn">Publish</button>
+        <button class="btn danger hidden" id="cancel-btn">Cancel</button>
+      </div>
+
+      <!-- ===================== live push ===================== -->
+      <div id="push" class="push hidden">
+        <div class="progress-wrap">
+          <div class="progress"><div id="progress-bar" class="bar"></div></div>
+          <div class="progress-meta"><span id="progress-text">working…</span></div>
+        </div>
+        <pre id="log" class="log"></pre>
+        <div id="outcome" class="outcome hidden"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================== folder picker ======================== -->
+<div id="browser" class="modal hidden">
+  <div class="modal-card">
+    <header>
+      <h3>Choose the build folder</h3>
+      <button class="btn ghost" id="browser-close">Close</button>
+    </header>
+    <div class="crumb"><button class="btn ghost small" id="browser-up">Up</button><code id="browser-path">This PC</code></div>
+    <p class="hint" id="browser-error"></p>
+    <ul id="browser-list" class="browser-list"></ul>
+    <footer>
+      <span class="hint" id="browser-files"></span>
+      <button class="btn primary" id="browser-use">Use this folder</button>
+    </footer>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
